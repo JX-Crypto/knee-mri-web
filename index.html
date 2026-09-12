@@ -1284,7 +1284,7 @@
                 return;
             }
             ort.env.wasm.wasmPaths = './ort-wasm/';
-            ort.env.wasm.numThreads = navigator.hardwareConcurrency || 4;
+            ort.env.wasm.numThreads = (typeof self!=="undefined" && self.crossOriginIsolated===true) ? (navigator.hardwareConcurrency||4) : 1;
             ort.env.wasm.simd = true;
             ort.env.logLevel = 'warning';
             console.log('[OR初始化] 线程数:', ort.env.wasm.numThreads, 'SIMD:', ort.env.wasm.simd);
